@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+		xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:jsp="http://java.sun.com/JSP/Page"
+		xmlns:ice="http://www.icesoft.com/icefaces/component"
+        lang="tr">
+
+<ice:outputDeclaration
+		doctypeRoot="HTML"
+		doctypePublic="-//W3C//DTD HTML 4.01 Transitional//EN"
+		doctypeSystem="http://www.w3.org/TR/html4/loose.dtd" />
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta>
+<title>Yemek Parametre</title>
+
+<ui:insert name="head" />
+</head>
+<body>		
+<f:view>
+	<ice:form partialSubmit="true">
+	<center>
+	<ice:outputText value="Parametre Ekranı"></ice:outputText>
+	
+<ice:dataTable border="1">
+			<ice:column id="column1">
+				<f:facet name="header">
+					<ice:outputText value="ID"></ice:outputText>
+				</f:facet>
+
+				<ice:inputText></ice:inputText>
+			</ice:column>
+			<ice:column id="column2">
+				<f:facet name="header">
+					<ice:outputText value="Yemek Adı"></ice:outputText>
+				</f:facet>
+				<ice:inputText></ice:inputText>
+			</ice:column>
+				<ice:column id="column3">
+				<f:facet name="header">
+					<ice:outputText value="Kalori"></ice:outputText>
+				</f:facet>
+				<ice:inputText></ice:inputText>
+			</ice:column>
+		</ice:dataTable>
+		</center>
+	</ice:form>
+</f:view></body>
+</html>

@@ -1,0 +1,101 @@
+function E = growing(I,E,q)
+s={};
+j=2;
+f = 1;
+while ~isempty(q)
+    koordinat=q{1};
+    x=koordinat(1);
+    y=koordinat(2);
+    if abs(I(x,y)-I(x,y+1))<E
+        durum_q = 0;
+	for k = 1:length(q)
+		if ((q{k} - [x, y + 1]) == [0, 0])
+			durum_q = 1;
+			break;
+		end
+	end
+	durum_s = 0;
+	for k = 1:length(s)
+		if ((s{k} - [x, y + 1]) == [0, 0])
+			durum_s = 1;
+			break;
+		end
+	end
+	if (durum_q == 0 & durum_s == 0)
+		q{j} = [x, y + 1];
+		j = j + 1;
+        end
+    end
+    if abs(I(x,y)-I(x,y-1))<E
+        durum_q = 0;
+	for k = 1:length(q)
+            if ((q{k} - [x, y - 1]) == [0, 0])
+			durum_q = 1;
+			break;
+		end
+	end
+	durum_s = 0;
+	for k = 1:length(s)
+		if ((s{k} - [x, y - 1]) == [0, 0])
+			durum_s = 1;
+			break;
+		end
+	end
+	if (durum_q == 0 & durum_s == 0)
+		q{j} = [x, y - 1];
+		j = j + 1;
+        end
+    end   
+    if abs(I(x,y)-I(x+1,y))<E
+        durum_q = 0;
+		for k = 1:length(q)
+            if ((q{k} - [x+1, y]) == [0, 0])
+				durum_q = 1;
+				break;
+			end
+		end
+		durum_s = 0;
+		for k = 1:length(s)
+			if ((s{k} - [x+1, y]) == [0, 0])
+				durum_s = 1;
+				break;
+			end
+		end
+		if (durum_q == 0 & durum_s == 0)
+			q{j} = [x+1, y];
+			j = j + 1;
+        end
+    end
+    if abs(I(x,y)-I(x-1,y))<E
+        durum_q = 0;
+		for k = 1:length(q)
+            if ((q{k} - [x-1, y]) == [0, 0])
+				durum_q = 1;
+				break;
+			end
+		end
+		durum_s = 0;
+		for k = 1:length(s)
+			if ((s{k} - [x-1, y]) == [0, 0])
+				durum_s = 1;
+				break;
+			end
+		end
+		if (durum_q == 0 & durum_s == 0)
+			q{j} = [x-1, y];
+			j = j + 1;
+        end
+    end      
+    s{f}=q{1};
+    q(1)=[];
+    j = j - 1;
+    f = f + 1;
+end
+for i = 1:length(s)
+	b = s{i};
+	r = b(1);
+	c = b(2);
+	I(r, c) = 255;
+end
+
+imshow(I)

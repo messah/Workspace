@@ -1,0 +1,120 @@
+I = imread('cameraman.tif');
+
+s = {};
+q = {[53,144]};
+
+i = 1;
+j = 1;
+
+while length(s) ~= length(q)
+	coord = q{i};
+	r = coord(1);
+	c = coord(2);
+    s={[r,c]};
+
+	if (I(r, c) == I(r, c + 1))
+		if (isempty(s))
+			q{j} = [r, c + 1];
+			j = j + 1;
+		else
+			state_q = 0;
+			for k = 1:length(q)
+				if ((q{k} - [r, c + 1]) == [0, 0])
+					state_q = 1;
+					break;
+				end
+			end
+			state_s = 0;
+			for k = 1:length(s)
+				if ((s{k} - [r, c + 1]) == [0, 0])
+					state_s = 1;
+					break;
+				end
+			end
+			if (state_q == 0 & state_s == 0)
+				q{j} = [r, c + 1];
+				j = j + 1;
+			end
+		end
+	end
+
+	if (I(r, c) == I(r, c - 1))
+		if (isempty(s))
+			q{j} = [r, c - 1];
+			j = j + 1;
+		else
+			state_q = 0;
+			for k = 1:length(q)
+				if ((q{k} - [r, c - 1]) == [0, 0])
+					state_q = 1;
+					break;
+				end
+			end
+			state_s = 0;
+			for k = 1:length(s)
+				if ((s{k} - [r, c - 1]) == [0, 0])
+					state_s = 1;
+					break;
+				end
+			end
+			if (state_q == 0 & state_s == 0)
+				q{j} = [r, c - 1];
+				j = j + 1;
+			end
+		end
+	end
+
+	if (I(r, c) == I(r + 1, c))
+		if (isempty(s))
+			q{j} = [r + 1, c];
+			j = j + 1;
+		else
+			state_q = 0;
+			for k = 1:length(q)
+				if ((q{k} - [r + 1, c]) == [0, 0])
+					state_q = 1;
+					break;
+				end
+			end
+			state_s = 0;
+			for k = 1:length(s)
+				if ((s{k} - [r + 1, c]) == [0, 0])
+					state_s = 1;
+					break;
+				end
+			end
+			if (state_q == 0 & state_s == 0)
+				q{j} = [r + 1, c];
+				j = j + 1;
+			end
+		end
+	end
+
+	if (I(r, c) == I(r - 1, c))
+		if (isempty(s))
+			q{j} = [r - 1, c];
+			j = j + 1;
+		else
+			state_q = 0;
+			for k = 1:length(q)
+				if ((q{k} - [r - 1, c]) == [0, 0])
+					state_q = 1;
+					break;
+				end
+			end
+			state_s = 0;
+			for k = 1:length(s)
+				if ((s{k} - [r - 1, c]) == [0, 0])
+					state_s = 1;
+					break;
+				end
+			end
+			if (state_q == 0 & state_s == 0)
+				q{j} = [r - 1, c];
+				j = j + 1;
+			end
+		end
+	end
+	s{i} = q{i};
+	i = i + 1;
+end

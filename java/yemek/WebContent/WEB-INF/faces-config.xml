@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!DOCTYPE faces-config PUBLIC
+  "-//Sun Microsystems, Inc.//DTD JavaServer Faces Config 1.1//EN"
+  "http://java.sun.com/dtd/web-facesconfig_1_1.dtd">
+
+<faces-config>
+	
+	<!-- ========================================================== -->
+	<!--		applications                                        -->
+	<!-- ========================================================== -->
+
+	<!-- icefaces facelet support -->
+	<application>
+		<view-handler>
+			com.icesoft.faces.facelets.D2DFaceletViewHandler
+							</view-handler>
+	</application>
+
+	<application>
+		<locale-config>
+			<default-locale>tr</default-locale>
+		</locale-config>
+	</application>
+
+	<!-- Allows you to inject Spring beans into JSF managed beans... -->
+	<application>
+		<variable-resolver>
+			org.springframework.web.jsf.DelegatingVariableResolver
+							</variable-resolver>
+	</application>
+	
+	<!-- ========================================================== -->
+	<!--		lifecyle                                            -->
+	<!-- ========================================================== -->
+
+  <managed-bean>
+
+            <managed-bean-name>ymkBean</managed-bean-name>
+
+            <managed-bean-class>yemek.YemekBean</managed-bean-class>
+
+            <managed-bean-scope>request</managed-bean-scope>
+
+      </managed-bean>
+      
+
+       <converter>
+    <converter-id>ConverterBean</converter-id>
+    <converter-class>yemek.ConverterBean</converter-class>
+  </converter>
+
+<navigation-rule>
+
+            <navigation-case>
+
+                  <from-outcome>menu</from-outcome>
+
+                  <to-view-id>/menu.iface</to-view-id>
+
+            </navigation-case>
+
+      </navigation-rule>
+
+
+
+
+</faces-config>
